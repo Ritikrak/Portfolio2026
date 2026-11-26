@@ -1,0 +1,203 @@
+@use "../../styles/tokens" as tokens;
+@use "../../styles/mixins" as mixins;
+
+.card {
+  min-width: 0;
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 0.8rem;
+  color: tokens.$color-muted;
+  font-family: tokens.$font-mono;
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+}
+
+.projectIndex {
+  color: tokens.$color-accent;
+}
+
+.projectYear {
+  margin-left: auto;
+}
+
+.visual {
+  position: relative;
+  aspect-ratio: 1.36;
+  margin: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background: tokens.$color-surface;
+}
+
+.visualWide {
+  aspect-ratio: 1.83;
+}
+
+.visualScreen {
+  aspect-ratio: 2.58;
+}
+
+.visualDocument {
+  aspect-ratio: 1.24;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 650ms cubic-bezier(0.2, 0.65, 0.25, 1);
+
+  .visual:hover & {
+    transform: scale(1.035);
+  }
+}
+
+.imageNote {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  left: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: rgba(241, 239, 233, 0.75);
+  font-family: tokens.$font-mono;
+  font-size: 0.52rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.75);
+}
+
+.cardInfo {
+  padding-top: 1.15rem;
+}
+
+.projectCopy {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  h3 {
+    margin: 0;
+    font-family: tokens.$font-serif;
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+  }
+
+  p {
+    max-width: 24rem;
+    margin: 0;
+    color: tokens.$color-muted;
+    font-size: 0.75rem;
+    line-height: 1.7;
+  }
+}
+
+.cardBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid tokens.$color-line;
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 0.35rem 0.55rem;
+    border: 1px solid tokens.$color-line;
+    border-radius: 999px;
+    color: tokens.$color-muted;
+    font-family: tokens.$font-mono;
+    font-size: 0.52rem;
+  }
+}
+
+.projectLink {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.5rem;
+  color: tokens.$color-text;
+  font-size: 0.67rem;
+  transition: color 180ms ease;
+
+  &:hover {
+    color: tokens.$color-accent;
+  }
+
+  @include mixins.focus-ring;
+}
+
+@media (max-width: tokens.$breakpoint-tablet) {
+  .projectCopy {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+}
+
+@media (min-width: 901px) {
+  .card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+
+    .visual {
+      aspect-ratio: 2.15;
+    }
+
+    .projectCopy p {
+      max-width: 34rem;
+    }
+  }
+}
+
+@media (max-width: tokens.$breakpoint-mobile) {
+  .visual {
+    aspect-ratio: 1.12;
+  }
+
+  .visualWide {
+    aspect-ratio: 1.55;
+  }
+
+  .visualScreen {
+    aspect-ratio: 2.58;
+  }
+
+  .visualDocument {
+    aspect-ratio: 1.24;
+  }
+
+  .cardBottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .imageNote {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image,
+  .projectLink {
+    transition: none;
+  }
+}

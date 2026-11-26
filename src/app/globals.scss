@@ -1,0 +1,61 @@
+@use "../styles/tokens" as tokens;
+
+:root {
+  color-scheme: dark;
+  --page-gutter: #{tokens.$page-gutter};
+  --content-width: #{tokens.$content-width};
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: tokens.$color-bg;
+  color: tokens.$color-text;
+  font-family: tokens.$font-sans;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: tokens.$color-accent;
+  color: tokens.$color-bg;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+img,
+svg {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

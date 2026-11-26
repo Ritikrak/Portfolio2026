@@ -1,0 +1,40 @@
+@use "../../styles/mixins" as mixins;
+@use "../../styles/tokens" as tokens;
+
+.toggle {
+  position: fixed;
+  z-index: 20;
+  right: clamp(1.25rem, 5vw, 5rem);
+  bottom: clamp(1.25rem, 3.2vh, 2rem);
+  display: inline-flex;
+  width: 5.8rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0;
+  border: 1px solid rgba(241, 239, 233, 0.22);
+  border-radius: 0.2rem;
+  background: rgba(16, 15, 13, 0.96);
+  color: rgba(241, 239, 233, 0.78);
+  cursor: pointer;
+  font-family: tokens.$font-mono;
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+  @include mixins.focus-ring;
+
+  &:hover {
+    border-color: rgba(241, 239, 233, 0.46);
+    background: #171614;
+    color: tokens.$color-text;
+  }
+}
+
+@media (max-width: 880px) {
+  .toggle {
+    right: 1.2rem;
+    bottom: clamp(1.15rem, 3vh, 1.8rem);
+  }
+}

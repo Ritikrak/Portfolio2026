@@ -1,0 +1,26 @@
+$color-bg: #111110;
+$color-surface: #1b1b19;
+$color-surface-raised: #242421;
+$color-text: #f1efe9;
+$color-muted: #9a9991;
+$color-faint: #66665f;
+$color-accent: #cf8059;
+$color-line: rgba(241, 239, 233, 0.14);
+
+$font-sans: var(--font-inter), sans-serif;
+$font-serif: var(--font-instrument-serif), Georgia, serif;
+$font-mono: var(--font-jetbrains-mono), monospace;
+
+$space-1: 0.5rem;
+$space-2: 1rem;
+$space-3: 1.5rem;
+$space-4: 2rem;
+$space-5: 3rem;
+$space-6: 4rem;
+$space-7: 6rem;
+$space-8: 8rem;
+
+$content-width: 1440px;
+$page-gutter: clamp(1.25rem, 5.2vw, 5rem);
+$breakpoint-tablet: 900px;
+$breakpoint-mobile: 640px;

@@ -1,0 +1,36 @@
+@use "../../styles/tokens" as tokens;
+
+.reveal {
+  display: inline;
+}
+
+.wordClip {
+  display: inline-block;
+  overflow: hidden;
+  margin-right: 0.23em;
+  padding-bottom: 0.1em;
+  vertical-align: bottom;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.accent {
+  color: tokens.$color-accent;
+  font-family: tokens.$font-serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.045em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word {
+    will-change: auto;
+  }
+}

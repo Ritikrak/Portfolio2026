@@ -1,0 +1,89 @@
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.fallback,
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fallback {
+  background-image: radial-gradient(
+    circle,
+    rgba(218, 151, 70, 0.7) 0.8px,
+    transparent 1.4px
+  );
+  background-position: center;
+  background-size: 8px 8px;
+  mask-image: radial-gradient(ellipse at center, #000 42%, transparent 79%);
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 42%,
+    transparent 79%
+  );
+  opacity: 0.62;
+  animation: fallbackWave 6s ease-in-out infinite alternate;
+  transition: opacity 400ms ease;
+}
+
+.canvas {
+  z-index: 1;
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+
+.ready {
+  .fallback {
+    opacity: 0;
+  }
+
+  .canvas {
+    opacity: 1;
+  }
+}
+
+@keyframes fallbackWave {
+  from {
+    transform: translateY(-3px);
+  }
+
+  to {
+    transform: translateY(3px);
+  }
+}
+
+@media (max-width: 700px) {
+  .fallback {
+    background-size: 7px 7px;
+  }
+}
+
+.frame[data-mode="ripples"] .fallback {
+  mask-image: radial-gradient(
+    circle at center,
+    transparent 0 11%,
+    #000 12% 49%,
+    transparent 79%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    transparent 0 11%,
+    #000 12% 49%,
+    transparent 79%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fallback,
+  .canvas {
+    animation: none;
+    transition: none;
+  }
+}

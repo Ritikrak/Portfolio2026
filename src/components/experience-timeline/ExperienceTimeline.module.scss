@@ -1,0 +1,225 @@
+@use "../../styles/tokens" as tokens;
+@use "../../styles/mixins" as mixins;
+
+.section {
+  width: min(calc(100% - (2 * var(--page-gutter))), var(--content-width));
+  margin-inline: auto;
+  padding-block: 7rem 8rem;
+  border-top: 1px solid tokens.$color-line;
+  scroll-margin-top: 5rem;
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+
+  h2 {
+    margin: 1rem 0 0;
+    font-family: tokens.$font-serif;
+    font-size: clamp(2.9rem, 6vw, 5.5rem);
+    font-weight: 400;
+    letter-spacing: -0.055em;
+    line-height: 0.94;
+  }
+}
+
+.eyebrow {
+  @include mixins.eyebrow;
+  margin: 0;
+}
+
+.headingNote {
+  max-width: 18rem;
+  margin: 0 0 0.2rem;
+  color: tokens.$color-muted;
+  font-size: 0.76rem;
+  line-height: 1.7;
+}
+
+.timeline {
+  position: relative;
+}
+
+.timelineEntries {
+  display: grid;
+  margin: 3.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timelineTrack,
+.timelineProgress {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 10.1rem;
+  width: 1px;
+  transform-origin: top center;
+}
+
+.timelineTrack {
+  background: tokens.$color-line;
+}
+
+.timelineProgress {
+  background: tokens.$color-accent;
+}
+
+.timelineItem {
+  position: relative;
+  display: grid;
+  grid-template-columns: 8rem minmax(0, 1fr);
+  gap: 4.2rem;
+  padding: 1.8rem 0 2.3rem;
+  border-top: 1px solid tokens.$color-line;
+
+  &:last-child {
+    border-bottom: 1px solid tokens.$color-line;
+  }
+}
+
+.period,
+.location {
+  color: tokens.$color-muted;
+  font-family: tokens.$font-mono;
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+}
+
+.period {
+  padding-top: 0.3rem;
+}
+
+.entryContent {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.9rem 2rem;
+  padding-left: 1.8rem;
+}
+
+.timelineDot {
+  position: absolute;
+  top: 0.34rem;
+  left: -4.55rem;
+  width: 0.65rem;
+  aspect-ratio: 1;
+  border: 1px solid tokens.$color-accent;
+  border-radius: 50%;
+  background: tokens.$color-bg;
+  box-shadow: 0 0 0 0.3rem tokens.$color-bg;
+}
+
+.entryTitle {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+
+  h3 {
+    margin: 0;
+    font-family: tokens.$font-serif;
+    font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  span {
+    color: tokens.$color-accent;
+    font-size: 0.73rem;
+  }
+}
+
+.entryContent p {
+  grid-column: 1 / -1;
+  max-width: 36rem;
+  margin: 0;
+  color: tokens.$color-muted;
+  font-size: 0.78rem;
+  line-height: 1.75;
+}
+
+.location {
+  align-self: start;
+  padding-top: 0.4rem;
+  text-align: right;
+}
+
+@media (max-width: tokens.$breakpoint-tablet) {
+  .section {
+    padding-block: 5rem 6rem;
+  }
+
+  .timelineTrack,
+  .timelineProgress {
+    left: 7rem;
+  }
+
+  .timelineItem {
+    grid-template-columns: 5rem minmax(0, 1fr);
+    gap: 3rem;
+  }
+
+  .timelineDot {
+    left: -3.35rem;
+  }
+}
+
+@media (max-width: tokens.$breakpoint-mobile) {
+  .section {
+    padding-block: 4.5rem 5rem;
+  }
+
+  .sectionHeading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .headingNote {
+    max-width: 22rem;
+  }
+
+  .timeline {
+    margin-top: 2.25rem;
+    padding-left: 0.9rem;
+  }
+
+  .timelineTrack,
+  .timelineProgress {
+    left: 0;
+  }
+
+  .timelineItem {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    padding-block: 1.5rem 1.8rem;
+  }
+
+  .period {
+    padding-left: 1.2rem;
+  }
+
+  .entryContent {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    padding-left: 1.2rem;
+  }
+
+  .timelineDot {
+    top: 0.2rem;
+    left: -1.18rem;
+    width: 0.55rem;
+  }
+
+  .entryContent p {
+    grid-column: auto;
+  }
+
+  .location {
+    padding-top: 0;
+    text-align: left;
+  }
+}

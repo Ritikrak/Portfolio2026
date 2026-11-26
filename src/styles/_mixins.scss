@@ -1,0 +1,18 @@
+@use "./tokens" as tokens;
+
+@mixin eyebrow {
+  color: tokens.$color-muted;
+  font-family: tokens.$font-mono;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid tokens.$color-accent;
+    outline-offset: 5px;
+  }
+}

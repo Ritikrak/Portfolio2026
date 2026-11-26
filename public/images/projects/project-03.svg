@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 880" fill="none">
+  <defs>
+    <linearGradient id="scene" x1="600" y1="0" x2="600" y2="880" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#62675E"/>
+      <stop offset=".56" stop-color="#B2A991"/>
+      <stop offset=".561" stop-color="#575C50"/>
+      <stop offset="1" stop-color="#252C28"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0" cy="0" r="1" gradientTransform="matrix(0 178 -178 0 600 322)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F0D8B7"/>
+      <stop offset="1" stop-color="#D48B68"/>
+    </radialGradient>
+  </defs>
+  <path fill="url(#scene)" d="M0 0h1200v880H0z"/>
+  <circle cx="600" cy="322" r="135" fill="url(#sun)" fill-opacity=".88"/>
+  <path d="M0 652c196-96 366-123 600-50 234 74 395 58 600-40v318H0V652Z" fill="#3D473E"/>
+  <path d="M0 762c205-97 412-94 600-27 188 68 400 57 600-24v169H0V762Z" fill="#252C28"/>
+  <path d="M98 132h1004M98 748h1004" stroke="#F0E7DB" stroke-opacity=".24"/>
+  <path d="M160 132v616M1040 132v616" stroke="#F0E7DB" stroke-opacity=".12"/>
+  <circle cx="600" cy="322" r="182" stroke="#F0E7DB" stroke-opacity=".3"/>
+</svg>
