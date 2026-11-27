@@ -3,14 +3,14 @@
 import { useRef, useState, type PointerEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import type { AboutContent } from "@/data/portfolio";
 import useScrollAnimations from "@/hooks/useScrollAnimations";
 import ParticleWave from "@/components/particle-wave/ParticleWave";
 import { useHeroMotionPreference } from "@/providers/MotionProvider";
 import styles from "./AboutSection.module.scss";
 
 type AboutSectionProps = {
-  description: string;
-  paragraphs: string[];
+  about: AboutContent;
 };
 
 type OrbParticle = {
@@ -49,11 +49,16 @@ function createConstellationParticles() {
   return particles;
 }
 
-const focusParticlePatterns: { visual: string; particles: OrbParticle[] }[] = [
-  { visual: "Structure", particles: [] },
-  { visual: "Ripples", particles: [] },
-  { visual: "Constellation", particles: createConstellationParticles() },
-];
+const constellationParticles = createConstellationParticles();
+
+const focusPatternByVisual: Record<
+  AboutContent["focusAreas"][number]["visual"],
+  OrbParticle[]
+> = {
+  Structure: [],
+  Ripples: [],
+  Constellation: constellationParticles,
+};
 
 const staticOutlineSizes = [40, 80, 120, 160, 200];
 const orbitAngles = [-46, 42, 90];
@@ -115,35 +120,16 @@ function StaticFocusArtwork({
   );
 }
 
-export default function AboutSection({
-  description,
-  paragraphs,
-}: AboutSectionProps) {
+export default function AboutSection({ about }: AboutSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const { heroMotionEnabled } = useHeroMotionPreference();
   const motionEnabled = heroMotionEnabled;
-  const focusAreas = [
-    {
-      label: "Build",
-      title: "Full-stack, Android, and machine-learning projects",
-      copy: description,
-      ...focusParticlePatterns[0],
-    },
-    {
-      label: "Secure",
-      title: "Computer Science & Cybersecurity",
-      copy: paragraphs[0],
-      ...focusParticlePatterns[1],
-    },
-    {
-      label: "Explore AI",
-      title: "Artificial Intelligence and modern tools",
-      copy: paragraphs[1],
-      ...focusParticlePatterns[2],
-    },
-  ];
-  const activeArea = focusAreas[activeIndex];
+  const focusAreas = about.focusAreas.map((area) => ({
+    ...area,
+    particles: focusPatternByVisual[area.visual],
+  }));
+  const activeArea = focusAreas[activeIndex] ?? focusAreas[0];
   const renderParticle = (particle: OrbParticle) => (
     <circle
       cx={particle.x}
@@ -183,8 +169,8 @@ export default function AboutSection({
       ref={sectionRef}
     >
       <header className={styles.sectionHeader}>
-        <p className={styles.eyebrow}>Three disciplines. One perspective.</p>
-        <span className={styles.sectionCount}>01 / 05</span>
+        <p className={styles.eyebrow}>{about.eyebrow}</p>
+        <span className={styles.sectionCount}>03 / 05</span>
       </header>
 
       <div className={styles.layout}>
@@ -280,9 +266,15 @@ export default function AboutSection({
           </div>
 
           <div className={styles.practiceNote}>
-            <h3>Practice compounds.</h3>
-            <p>{paragraphs[2]}</p>
-            <p className={styles.belief}>{paragraphs[3]}</p>
+            <h3>{about.practiceTitle}</h3>
+            {about.practiceParagraphs.map((paragraph, index) => (
+              <p
+                className={index > 0 ? styles.belief : undefined}
+                key={paragraph}
+              >
+                {paragraph}
+              </p>
+            ))}
             <a href="#work">
               Explore my work
               <ArrowUpRight size={14} strokeWidth={1.5} aria-hidden="true" />
@@ -292,14 +284,11 @@ export default function AboutSection({
 
         <div className={styles.storyColumn}>
           <h2 id="about-title">
-            Technology is a starting point.
+            {about.headlineTop}
             <br />
-            <em>Build with purpose.</em>
+            <em>{about.headlineAccent}</em>
           </h2>
-          <p className={styles.storyLead}>
-            I connect curiosity, strong fundamentals, and hands-on engineering
-            to make useful things.
-          </p>
+          <p className={styles.storyLead}>{about.lead}</p>
           <div
             aria-live="polite"
             className={styles.focusDetail}
@@ -308,13 +297,11 @@ export default function AboutSection({
             <p className={styles.focusHeading}>{activeArea.title}</p>
             <p>{activeArea.copy}</p>
           </div>
-          <a className={styles.storyLink} href="#education">
-            Read my story
+          <a className={styles.storyLink} href="#experience">
+            Explore experience
             <ArrowUpRight size={15} strokeWidth={1.5} aria-hidden="true" />
           </a>
-          <p className={styles.signature}>
-            Engineering mind. Security first. Always learning.
-          </p>
+          <p className={styles.signature}>{about.signature}</p>
         </div>
       </div>
     </section>

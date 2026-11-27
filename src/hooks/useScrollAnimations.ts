@@ -84,7 +84,11 @@ export default function useScrollAnimations(
       }, root);
     });
 
+    const handleRefresh = () => ScrollTrigger.refresh();
+    window.addEventListener("load", handleRefresh);
+
     return () => {
+      window.removeEventListener("load", handleRefresh);
       window.cancelAnimationFrame(frame);
       context?.revert();
     };

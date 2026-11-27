@@ -1,3 +1,21 @@
+export type AboutFocusArea = {
+  label: string;
+  title: string;
+  copy: string;
+  visual: "Structure" | "Ripples" | "Constellation";
+};
+
+export type AboutContent = {
+  eyebrow: string;
+  headlineTop: string;
+  headlineAccent: string;
+  lead: string;
+  focusAreas: AboutFocusArea[];
+  practiceTitle: string;
+  practiceParagraphs: string[];
+  signature: string;
+};
+
 export type SkillGroup = {
   id: string;
   label: string;
@@ -62,13 +80,41 @@ export const portfolioData = {
     copyrightYear: "2026",
   },
   about: {
-    paragraphs: [
-      "I’m Ritik Raj, pursuing a B.Tech in Computer Science and Engineering (Cybersecurity) at Government Engineering College, Jehanabad.",
-      "I have a foundation in HTML5, CSS3, Tailwind CSS, JavaScript, React.js, Node.js, Express.js, and MongoDB. I’m also exploring Artificial Intelligence and modern AI tools.",
-      "I actively practice Data Structures and Algorithms and have solved 300+ problems across LeetCode, HackerRank, GeeksforGeeks, and InterviewBit.",
-      "I believe strong fundamentals, consistent skill improvement, and disciplined learning are key to becoming an industry-ready software developer.",
+    eyebrow: "Three disciplines. One perspective.",
+    headlineTop: "Strong systems.",
+    headlineAccent: "Built to ship.",
+    lead:
+      "I’m Ritik Raj — a Computer Science (Cybersecurity) undergraduate who builds across the stack, from FastAPI and PostgreSQL backends to React interfaces, native Android apps, and applied ML tools.",
+    focusAreas: [
+      {
+        label: "Build",
+        title: "Full-stack systems, APIs, and native mobile",
+        copy:
+          "I design and ship end-to-end applications — whether modeling PostgreSQL workflows with FastAPI and React at Infosys Springboard, building Java Android apps at NIT Patna, or shipping responsive MERN web products.",
+        visual: "Structure",
+      },
+      {
+        label: "Secure",
+        title: "Cybersecurity & network-aware engineering",
+        copy:
+          "Pursuing a B.Tech in Computer Science & Engineering (Cybersecurity) alongside Cisco CCNA training shapes how I write code: clean API boundaries, encrypted authentication flows, and resilient data handling.",
+        visual: "Ripples",
+      },
+      {
+        label: "Explore AI",
+        title: "Applied machine learning & AI products",
+        copy:
+          "Beyond web and mobile, I turn ML models into practical tools — from multilingual NLP text classification with Scikit-learn to MindCare AI’s FastAPI wellness dashboard and prompt-driven image generation with Imagify.",
+        visual: "Constellation",
+      },
     ],
-  },
+    practiceTitle: "Engineering in practice.",
+    practiceParagraphs: [
+      "Whether debugging Retrofit network calls on Android, structuring PostgreSQL migrations with Alembic, or wrapping a Scikit-learn model behind a clean FastAPI service, I care about readable architecture and software that holds up in real hands.",
+      "Consistent practice in data structures and algorithms sharpens how I reason about edge cases and complexity, while internships and shipped products keep every solution grounded in real-world engineering.",
+    ],
+    signature: "Systems mindset. Security-aware. Built to ship.",
+  } satisfies AboutContent,
   skillGroups: [
     {
       id: "development",

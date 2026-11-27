@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
 import type { ProjectEntry } from "@/data/portfolio";
 import useScrollAnimations from "@/hooks/useScrollAnimations";
@@ -11,9 +12,14 @@ import styles from "./ProjectCard.module.scss";
 type ProjectCardProps = {
   project: ProjectEntry;
   index: number;
+  isFullWidth?: boolean;
 };
 
-export default function ProjectCard({ project, index }: ProjectCardProps) {
+export default function ProjectCard({
+  project,
+  index,
+  isFullWidth = false,
+}: ProjectCardProps) {
   const cardRef = useRef<HTMLElement>(null);
   useScrollAnimations(cardRef);
 
@@ -44,8 +50,15 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           alt={project.imageAlt}
           className={styles.image}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 900px) 45vw, 42vw"
+          loading="eager"
+          onLoad={() => ScrollTrigger.refresh()}
+          sizes={
+            isFullWidth
+              ? "(max-width: 640px) 100vw, 92vw"
+              : "(max-width: 640px) 100vw, (max-width: 900px) 48vw, 45vw"
+          }
           src={project.image}
+          unoptimized
         />
         {project.isPlaceholderImage && (
           <figcaption className={styles.imageNote}>

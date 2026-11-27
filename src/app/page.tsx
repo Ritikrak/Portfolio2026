@@ -34,19 +34,12 @@ export default function Home() {
           heroDescriptor={profile.heroDescriptor}
         />
 
-        <AboutSection
-          description={profile.description}
-          paragraphs={about.paragraphs}
-        />
-
-        <SkillsSection groups={skillGroups} />
-
         <section className={styles.work} id="work" aria-labelledby="work-title">
           <ScrollReveal as="div" className={styles.sectionHeading}>
             <div>
-              <p className={styles.eyebrow}>03 / Selected projects</p>
+              <p className={styles.eyebrow}>01 / Projects</p>
               <h2 id="work-title">
-                <TextReveal text="Selected projects." accentWord="projects." />
+                <TextReveal text="Projects." />
               </h2>
             </div>
             <span className={styles.sectionCount}>
@@ -56,10 +49,21 @@ export default function Home() {
 
           <div className={styles.projectGrid}>
             {projects.map((project, index) => (
-              <ProjectCard index={index} key={project.id} project={project} />
+              <ProjectCard
+                index={index}
+                isFullWidth={
+                  projects.length % 2 === 1 && index === projects.length - 1
+                }
+                key={project.id}
+                project={project}
+              />
             ))}
           </div>
         </section>
+
+        <SkillsSection groups={skillGroups} />
+
+        <AboutSection about={about} />
 
         <ExperienceTimeline entries={experience} />
 

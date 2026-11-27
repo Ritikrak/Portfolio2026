@@ -12,9 +12,9 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import styles from "./SiteHeader.module.scss";
 
 const navigation = [
-  { href: "#about", label: "About" },
+  { href: "#work", label: "Projects" },
   { href: "#skills", label: "Skills" },
-  { href: "#work", label: "Work" },
+  { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
   { href: "#education", label: "Education" },
 ];
